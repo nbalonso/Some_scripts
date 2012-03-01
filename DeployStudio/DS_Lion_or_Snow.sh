@@ -4,8 +4,12 @@ MEMORY=`system_profiler SPHardwareDataType | grep "Memory" | awk '{ print $2; }'
 PROCESSOR=`system_profiler SPHardwareDataType | grep "Processor Name"`
 
 if [ $MEMORY -ge 2 ]; then
-    #echo "we have enough memory"
+    #we have enough memory
     if [[ "$PROCESSOR" == *i7* ]]; then 
+		echo "RuntimeSelectWorkflow: Lion for this guy!"
+		exit 0
+	fi
+	if [[ "$PROCESSOR" == *i5* ]]; then 
 		echo "RuntimeSelectWorkflow: Lion for this guy!"
 		exit 0
 	fi
@@ -13,14 +17,22 @@ if [ $MEMORY -ge 2 ]; then
 		echo "RuntimeSelectWorkflow: Lion for this guy!"
 		exit 0
 	fi
-	#
-	#
-	#more cpu checks here
-	#
-	#
+	if [[ "$PROCESSOR" == *Xeon* ]]; then 
+		echo "RuntimeSelectWorkflow: Lion for this guy!"
+		exit 0
+	fi
+	if [[ "$PROCESSOR" == *"2 Duo"* ]]; then 
+		echo "RuntimeSelectWorkflow: Lion for this guy!"
+		exit 0
+	fi
+
+	#didnt found a valid processor even though we have enough memory
 	echo "RuntimeSelectWorkflow: Snow Leopard for this guy!"
 	exit 0	
 else
-	#echo "we do not have enough memory"
+	#we do not have enough memory
 	echo "RuntimeSelectWorkflow: Snow Leopard for this guy!"
+	exit 0
 fi
+echo "Script ended abnormally"
+exit 1
