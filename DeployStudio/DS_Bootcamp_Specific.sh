@@ -1,6 +1,7 @@
+# With the Apple addition of one package that contains BootCamp4 for all Lion supported machines this is deprecated
+
 #!/bin/sh
 #Script to install Windows specific version by machine model to address BootCamp 3 vs 4
-# Yes, we currently maintain 4 Windows images.
 
 #Known models that support BootCamp 4 and should not be listed in the "if" condition are:
 	#iMac12,1 (21.5" mid2011)
